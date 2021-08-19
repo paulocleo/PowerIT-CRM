@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FuncionariosService } from '../../services/domain/funcionarios.service';
 
 /**
  * Generated class for the DashboardPage page.
@@ -15,11 +16,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public funcionarioService: FuncionariosService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+       
+    console.log(this.funcionarioService.findAllFuncionarios());
+    
+    /*
+    this.funcionarioService.findAll()
+    .subscribe(response => {
+      console.log(response);
+    },
+    error => {
+      console.log(error);
+    }    
+    
+    );*/
   }
+
 
 }
