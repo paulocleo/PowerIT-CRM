@@ -1,4 +1,6 @@
 export interface FuncionariosDTO {
-    id : string;
-    nome : string;
+    Id : string;
+    NomeCompleto : string;
+    NomeUsuario : string;
+    isAtivo : boolean;
 }

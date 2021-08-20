@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataDTO } from '../../models/data.dto';
 import { FuncionariosExemploDTO } from '../../models/funcionarioexemplo.dto';
 import { FuncionariosDTO } from '../../models/funcionarios.dto';
+import { FuncionariosResponseDTO } from '../../models/funcionariosresponse.dto';
 import { FuncionariosService } from '../../services/domain/funcionarios.service';
 
 /**
@@ -23,6 +24,8 @@ export class DashboardPage {
 
   listFuncionarios : DataDTO[];
 
+  listFunc: FuncionariosResponseDTO[];
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -31,34 +34,20 @@ export class DashboardPage {
 
   ionViewDidLoad() {
     
-    this.funcionarioService.fingAllExemplo()
-    .subscribe(response => {
-      
-      this.listFuncionarios = (<any>response).data;
-
-      var loader_e = document.getElementById('loader1');
-      loader_e.classList.add('hidden');
-
-      var loader_e2 = document.getElementById('loader2');
-      loader_e2.classList.add('hidden');
-
-      console.log(response);
-    },
-    error => {});
-
-    /*this.listFuncionarios = this.funcionarioService.findAllFuncionarios();    
-    console.log(this.funcionarioService.findAllFuncionarios());*/
-    
-    /*
     this.funcionarioService.findAll()
     .subscribe(response => {
-      console.log(response);
+        this.listFunc = response;
+
+        var loader_e = document.getElementById('loader1');
+        loader_e.classList.add('hidden');
+
+        var loader_e2 = document.getElementById('loader2');
+        loader_e2.classList.add('hidden');
     },
     error => {
       console.log(error);
-    }    
-    
-    );*/
+      
+    });    
   }
 
   AbrirTodosFuncionarios() {

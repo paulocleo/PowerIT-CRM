@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DataDTO } from '../../models/data.dto';
+import { FuncionariosResponseDTO } from '../../models/funcionariosresponse.dto';
 import { FuncionariosService } from '../../services/domain/funcionarios.service';
 
 /**
@@ -17,7 +17,7 @@ import { FuncionariosService } from '../../services/domain/funcionarios.service'
 })
 export class FuncionariosPage {
 
-  listFuncionarios : DataDTO[];
+  listFuncionarios : FuncionariosResponseDTO[];
   
   constructor(
     public navCtrl: NavController, 
@@ -27,35 +27,19 @@ export class FuncionariosPage {
 
   ionViewDidLoad() {
     
-    this.funcionarioService.fingAllExemplo()
-    .subscribe(response => {
-      
-      this.listFuncionarios = (<any>response).data;
-
-      var element = document.getElementById('loader');
-      element.classList.add('hidden');
-
-      console.log(response);
-    },
-    error => {
-      //console.log(error);
-    }    
-    
-    );
-
-    /*this.listFuncionarios = this.funcionarioService.findAllFuncionarios();    
-    console.log(this.funcionarioService.findAllFuncionarios());*/
-    
-    /*
     this.funcionarioService.findAll()
     .subscribe(response => {
-      console.log(response);
+        this.listFuncionarios = response;
+
+        var loader_e = document.getElementById('loader');
+        loader_e.classList.add('hidden');
+
     },
     error => {
       console.log(error);
-    }    
-    
-    );*/
+      
+    });    
+
   }
 
 }
