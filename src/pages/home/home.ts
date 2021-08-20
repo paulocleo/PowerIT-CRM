@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,10 @@ export class HomePage {
     password: ""
   }
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController,
+    public authService: AuthService) {
     
   }
 
@@ -26,9 +30,13 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  login() {
-    console.log(this.creds);    
-    this.navCtrl.setRoot('DashboardPage');
+  login() {    
+    console.log(this.creds);   
+    
+    if(this.authService.authenticate(this.creds)){
+      this.navCtrl.setRoot('DashboardPage');
+    }else console.log("username or password invalidos!");
+        
   }
 
 }
