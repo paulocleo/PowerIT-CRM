@@ -9,6 +9,16 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Dashboard</p>
+  <p>Funcionarios</p>
+  <ion-list>
+    <button ion-item *ngFor="let item of listFuncionarios | slice:0:3; let i=index">
+
+      <ion-thumbnail item-start>
+        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/person-circle-outline.svg">
+      </ion-thumbnail>
+      <ion-label>{{ item.employee_name }}</ion-label>
+      
+    </button>    
+  </ion-list>
 
 </ion-content>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DataDTO } from '../../models/data.dto';
+import { FuncionariosExemploDTO } from '../../models/funcionarioexemplo.dto';
+import { FuncionariosDTO } from '../../models/funcionarios.dto';
 import { FuncionariosService } from '../../services/domain/funcionarios.service';
 
 /**
@@ -16,6 +19,10 @@ import { FuncionariosService } from '../../services/domain/funcionarios.service'
 })
 export class DashboardPage {
 
+  //listFuncionarios: Array<FuncionariosDTO> = [];
+
+  listFuncionarios : DataDTO[];
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -23,8 +30,22 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
-       
-    console.log(this.funcionarioService.findAllFuncionarios());
+    
+    this.funcionarioService.fingAllExemplo()
+    .subscribe(response => {
+      
+      this.listFuncionarios = (<any>response).data;
+
+      console.log(response);
+    },
+    error => {
+      console.log(error);
+    }    
+    
+    );
+
+    /*this.listFuncionarios = this.funcionarioService.findAllFuncionarios();    
+    console.log(this.funcionarioService.findAllFuncionarios());*/
     
     /*
     this.funcionarioService.findAll()
