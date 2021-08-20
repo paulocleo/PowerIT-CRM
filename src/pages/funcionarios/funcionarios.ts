@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataDTO } from '../../models/data.dto';
-import { FuncionariosExemploDTO } from '../../models/funcionarioexemplo.dto';
-import { FuncionariosDTO } from '../../models/funcionarios.dto';
 import { FuncionariosService } from '../../services/domain/funcionarios.service';
 
 /**
- * Generated class for the DashboardPage page.
+ * Generated class for the FuncionariosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,15 +12,13 @@ import { FuncionariosService } from '../../services/domain/funcionarios.service'
 
 @IonicPage()
 @Component({
-  selector: 'page-dashboard',
-  templateUrl: 'dashboard.html',
+  selector: 'page-funcionarios',
+  templateUrl: 'funcionarios.html',
 })
-export class DashboardPage {
-
-  //listFuncionarios: Array<FuncionariosDTO> = [];
+export class FuncionariosPage {
 
   listFuncionarios : DataDTO[];
-
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -36,15 +32,16 @@ export class DashboardPage {
       
       this.listFuncionarios = (<any>response).data;
 
-      var loader_e = document.getElementById('loader1');
-      loader_e.classList.add('hidden');
-
-      var loader_e2 = document.getElementById('loader2');
-      loader_e2.classList.add('hidden');
+      var element = document.getElementById('loader');
+      element.classList.add('hidden');
 
       console.log(response);
     },
-    error => {});
+    error => {
+      //console.log(error);
+    }    
+    
+    );
 
     /*this.listFuncionarios = this.funcionarioService.findAllFuncionarios();    
     console.log(this.funcionarioService.findAllFuncionarios());*/
@@ -60,10 +57,5 @@ export class DashboardPage {
     
     );*/
   }
-
-  AbrirTodosFuncionarios() {
-    this.navCtrl.setRoot('FuncionariosPage');
-  }
-
 
 }

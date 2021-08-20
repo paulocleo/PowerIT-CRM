@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FuncionariosService } from '../services/domain/funcionarios.service';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FuncionariosService } from '../services/domain/funcionarios.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FuncionariosService
+    ,ErrorInterceptorProvider
   ]
 })
 export class AppModule {}
