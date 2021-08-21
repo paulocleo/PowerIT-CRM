@@ -17,13 +17,15 @@
     <img src="assets/imgs/loader.gif" alt="">
   </div>
   <ion-list>
-    <button ion-item *ngFor="let item of listFunc | slice:0:3; let i=index">
+    <button class="item-funcionario" ion-item *ngFor="let item of listFunc | slice:0:3; let i=index">
 
       <ion-thumbnail item-start>
         <img class="avatar" src="https://unpkg.com/ionicons@5.5.2/dist/svg/person-circle-outline.svg">
       </ion-thumbnail>
-      <ion-label>{{ item.Funcionarios.NomeCompleto }}</ion-label>
-      
+      <p>{{ item.Funcionarios.NomeCompleto }}</p>
+      <p>{{ item.Funcionarios.FuncaoAtual }} | {{ item.Funcionarios.ProjetoAtual }}</p>
+      <ion-label *ngFor="let itemHab of item.Habilidades">{{ itemHab.Nome }}</ion-label>
+          
     </button> 
     <div>
       <a (click)="AbrirTodosFuncionarios()">ver todos</a>   
@@ -45,7 +47,7 @@
         <ion-thumbnail item-start>
           <img class="avatar" src="https://unpkg.com/ionicons@5.5.2/dist/svg/person-circle-outline.svg">
         </ion-thumbnail>
-        <ion-label>{{ item.Funcionarios.NomeCompleto }}</ion-label>
+        <ion-label>{{ item.Funcionarios.NomeCompleto }}</ion-label>       
         
       </button> 
       <div>
